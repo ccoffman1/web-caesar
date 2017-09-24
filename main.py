@@ -20,11 +20,11 @@ page_header = """
                 border-radius: 10px;
             }
 
-            textarea {
+            textarea {{}
                 margin: 10px 0;
                 width: 540px;
                 height: 120px;
-            }
+            }}
         </style>
     </head>
     <body>
@@ -38,13 +38,12 @@ form = """
             </label>
             <br>
 
-            <input type="textarea" name="text" />
+            <textarea type="text" name="text">{strt}</textarea>
 
             <br>
             <input type="submit" name="my-form" value="Send" />
         </form>
 
-        <p> Encoded Text: </p>
 
 """    
         
@@ -59,7 +58,7 @@ page_footer = """
 
 
 @app.route("/")
-def my_form():
+def index():
     return page_header + form + page_footer
 
 
@@ -73,7 +72,7 @@ def encrypt():
     text = rotate_string(text,rot)
 
 
-    return page_header + form + "<h1>" + text + "</h1>" + page_footer
+    return page_header + "<h1>" + form.format(strt=text) + "</h1>" + page_footer
 
 
 
